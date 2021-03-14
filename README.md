@@ -9,15 +9,16 @@ The page is most likely to get refreshed if you or someone else who has access t
   Selenium for Python
 
 ## To use:
+  in a console, cd to the chat-scrape directory\
   launch a Python interactive shell\
-  paste the contents of the chat_scrape file into the console (this might be fiddly? sorry)\
-  bring up teams in a browser and copy the url\
+  in a browser, bring up teams and copy the url\
   in the console:\
+  from chat_scrape import SeleniumScrape\
   ss = SeleniumScrape()\
-  ss.session_setup(url)\
-  in the NEW browser that Selenium opened, log into teams and do the duo auth, also bring up the chat you want to scrape\
+  ss.session_setup("https://teams-url")\
+  in the NEW browser that Selenium opened, log into teams, also bring up the chat you want to scrape\
   in the console:\
-  ss.capture_setup(filename) #where filename is the path/filename.txt that you want to write to\
+  ss.capture_setup("path-to/filename.txt")\
   ss.capture_loop()
   
   Note that the capture loop will bork every so often. most of the time you can simply start it again\
@@ -32,5 +33,12 @@ The page is most likely to get refreshed if you or someone else who has access t
   ss.position = ss.target\
   ss.capture_loop
   
+  If you want to scroll back to a certain date before starting the capture loop\
+  in the console:\
+  ss.scrollback_to_date(2021,3,2) #where the date you want to scroll to is 3/2/21
   
-
+  Note that manually scrolling around in the chat window may cause the position value to be invalid\
+  where a valid value is a position that is currently visible or very close
+  if that happens, you can either use the webtools to figure out a valid number or refresh the chat\
+  and manually reset the position to 0
+  ss.position=0
