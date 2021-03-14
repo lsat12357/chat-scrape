@@ -56,10 +56,9 @@ class SeleniumScrape:
   # 4 digit year, non-padded month and day as integers
   # pos is current data-scroll-pos, 0 if at the bottom/most recent message
   # e.g. scrollback_to_date(2020,6,1,0)
-  def scrollback_to_date(self, y, m, d, pos):
+  def scrollback_to_date(self, y, m, d):
     target = date(y, m, d).toordinal()
     d = date.today().toordinal()
-    self.position = pos
     while d >= target:
       message = WebDriverWait(self.driver, timeout=20).until(lambda d:
       self.pane.find_element_by_xpath("//div[@data-scroll-pos='{0}']".format(self.position)))
