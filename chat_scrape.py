@@ -14,19 +14,18 @@ class SeleniumScrape:
     self.position = None
     self.target = None
 
-  #session setup
+  # arg u is the url, "https://teams.blah"
   def session_setup(self, u):
     self.url = u
     self.driver = webdriver.Firefox()
     self.driver.get(self.url)
 
-  #capture setup
+  # arg fname is the 'path/filename' where messages will be written
   def capture_setup(self, fname):
     self.pane = self.driver.find_element_by_xpath("//div[@id='page-content-wrapper']")
     self.position = 0
     self.fhandle = open(fname,'a')
 
-  # capture messages loop
   def capture_loop(self):
     while True:
       message = WebDriverWait(self.driver, timeout=20).until(lambda d:
@@ -41,12 +40,12 @@ class SeleniumScrape:
       self.driver.execute_script("arguments[0].scrollIntoView();", message)
       print("position is " + str(self.position) + "\n")
 
-  # fast scrollback setup
+  # argument t is data-scroll-pos target number
+  # i.e. the position of the message you are scolling back to
   def scrollback_setup(self, t):
     self.position = 0
     self.target = t
 
-  # fast scrollback loop
   def scrollback_loop(self):
     while self.position < self.target:
       message = WebDriverWait(self.driver, timeout=20).until(lambda d:
