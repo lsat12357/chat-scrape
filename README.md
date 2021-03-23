@@ -15,7 +15,7 @@ The page is most likely to get refreshed if you or someone else who has access t
   in the console:\
   from chat_scrape import SeleniumScrape\
   ss = SeleniumScrape()\
-  ss.session_setup("https://teams-url")\
+  ss.session_setup("https://teams-url") \
   in the NEW browser that Selenium opened, log into teams, also bring up the chat you want to scrape\
   in the console:\
   ss.capture_setup("path-to/filename.txt")\
