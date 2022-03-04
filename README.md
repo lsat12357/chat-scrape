@@ -31,7 +31,7 @@ The page is most likely to get refreshed if you or someone else who has access t
   Note that the scrollback loop may also bork, and hopefully will allow you to just restart it as well\
   Once the chat has scrolled back to where you left off, reset the position and restart the capture\
   ss.position = ss.target\
-  ss.capture_loop
+  ss.capture_loop()
   
   If you want to scroll back to a certain date before starting the capture loop\
   in the console:\
